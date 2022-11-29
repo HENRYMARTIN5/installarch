@@ -31,4 +31,24 @@ Finally, run `ping google.com`. If that works, run `timedatectl set-ntp true` to
 
 ### Step 4: Clone this repo and run the script
 
-TODO. No script exists yet.
+Run:
+
+```sh
+git clone https://github.com/HENRYMARTIN5/installarch.git
+cd installarch
+chmod +x installarch.sh
+```
+
+Before we actually install it, there are a few things you need to know:
+
+ - You need to choose a hostname. This is the name of your computer. It can be anything you want, but it's recommended to keep it short and simple. For example, `mylaptop` or `mydesktop`.
+ - You need to choose a username. This is the name of the user you will be using. It can be anything you want, but it's recommended to keep it short and simple. For example, `hacker` or `bob`.
+ - You also need to choose a root password. This will be the password for the root user (which can be the same as your user password).
+ - You also need to choose a user password. This will be the password for your user (which you specified the username of earlier).
+ - You also need to choose a drive to install it to, for instance, `/dev/sda`.
+
+Now, run the script:
+
+```sh
+./installarch.sh [DRIVE] [HOSTNAME] [USERNAME] [ROOTPASSWORD] [PASSWORD]
+```
