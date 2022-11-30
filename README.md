@@ -151,4 +151,3 @@ Yay! You just installed Arch Linux! Revel in your glory for now you may utter th
  - Installs `yay`, an AUR helper
  - Enables `NetworkManager`
  - Automatically launches the display manager
- - 
