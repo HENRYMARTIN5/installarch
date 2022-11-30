@@ -52,3 +52,71 @@ Now, run the script:
 ```sh
 ./installarch.sh [DRIVE] [HOSTNAME] [USERNAME] [ROOTPASSWORD] [PASSWORD]
 ```
+
+### Step 5: Reboot into your shiny new Arch Linux install (but we're not dont yet)!
+
+First, we need to reboot the system. Run the command:
+
+```sh
+reboot
+```
+
+You should have been dropped into a login screen. Log in with the user username and password you chose earlier.
+
+### Step 6: Clone this repo again and run the post-install script
+
+But first, we need to install git again, because our fresh install doesn't contain it.
+
+```sh
+sudo pacman -S wget curl git --noconfirm
+```
+
+Now, clone the repo and move into it:
+
+```sh
+git clone https://github.com/HENRYMARTIN5/installarch.git
+cd installarch
+chmod +x postinstall.sh
+```
+
+And finally, run the script, passing it your GPU brand (amd, intel, or nvidia) and the desktop environment. We'll quickly dive into what each of the DEs look like so you can properly choose the one you want.
+
+ - Budgie (`budgie`) ![image](https://user-images.githubusercontent.com/62612165/204823121-d625b61b-d2ed-4fd8-abdd-6b5ea528ed42.png)
+ - Cinnamon (`cinnamon`) ![image](https://user-images.githubusercontent.com/62612165/204823321-c6b06a4c-49e9-4e2b-920c-f40fa6ebde81.png)
+ - Deepin (`deepin`) ![image](https://user-images.githubusercontent.com/62612165/204823530-3ea1d145-3d45-4c98-875a-448ba751b81d.png)
+ - GNOME (`gnome`) ![image](https://user-images.githubusercontent.com/62612165/204824358-6b78972f-5470-4f59-9359-c2258e9c2b16.png)
+ - KDE Plasma (`plasma`) ![image](https://user-images.githubusercontent.com/62612165/204823929-e3a8ac69-8940-4027-889a-d90dd1df3a3a.png)
+ - LXDE (`lxde`) ![image](https://user-images.githubusercontent.com/62612165/204824088-35d15337-233e-4e56-83df-52065e23ed4b.png)
+ - LXQt (`lxqt`) ![image](https://user-images.githubusercontent.com/62612165/204824615-4149207b-370b-4350-b4c9-63d7b701aebf.png)
+ - MATE (`mate`) ![image](https://user-images.githubusercontent.com/62612165/204824969-7eff12ee-ec0a-4b9b-9b08-72c8f6004ea3.png)
+ - Xfce (`xfce`) ![image](https://user-images.githubusercontent.com/62612165/204825545-37870b45-70bf-4d59-8618-b2348e0acfda.png)
+
+
+I personally reccomend KDE Plasma for experienced Windows users, LXQt for people running on Vms or other less powerful machines, GNOME for people wanting a minimalist, modern desktop with a bit of a different layout, and Xfce for people who want to use Arch for development due to its powerful tiling manager. If you want a somewhat Windows-esque experience with a bit of a switched up feature set, I reccomend looking into Budgie, which mimics GNOME in functionality (it was based on GNOME, actually) but adds features that will require some adjusting to from windows.
+
+TL;DR: KDE Plasma for Windows users, LXQt for less powerful machines, GNOME for something modern, Xfce for development, Budgie for Windows-esque with added features.
+
+Chose one? Great! Find its ID (it's in parentheses after the name) and remember it. You'll need it later.
+
+Next up, you need to choose a shell. The options are `bash` (which is preinstalled), `zsh`, and `fish`. Chose whichever one you like (or just stick with bash if you don't know what I'm talking about). If you choose to use `zsh`, `oh-my-zsh` will also be installed.
+
+Enter all of this information into the following command:
+
+```sh
+./postinstall.sh [DESKTOP] [GPUBRAND] [SHELL]
+```
+
+If everything works well, you should be dropped into a graphical login screen. Log in with the credentials you chose earlier and enjoy your chosen desktop.
+
+### Step 7: Celebrate!
+
+Yay! You just installed Arch Linux! Revel in your glory for now you may utter the glorious words:
+
+```
+.__                                                 .__           ___.    __           
+|__|    __ __  ______ ____     _____ _______   ____ |  |__        \_ |___/  |___  _  __
+|  |   |  |  \/  ___// __ \    \__  \\_  __ \_/ ___\|  |  \        | __ \   __\ \/ \/ /
+|  |   |  |  /\___ \\  ___/     / __ \|  | \/\  \___|   Y  \       | \_\ \  |  \     / 
+|__|   |____//____  >\___  >   (____  /__|    \___  >___|  / /\    |___  /__|   \/\_/  
+                  \/     \/         \/            \/     \/  )/        \/              
+```
