@@ -5,8 +5,8 @@
 DISK=$1
 HOSTNAME=$2
 USERNAME=$3
-ROOTPASSWORD=$4
-USERPASSWORD=$5
+ROOTPASSWORD = $4
+USERPASSWORD = $5
 
 echo "Validating disk $DISK"
 
@@ -62,14 +62,14 @@ arch-chroot /mnt <<EOF
   # set root password
   passwd <<EOT
   $ROOTPASSWORD
-  EOT
+EOT
 
   # make a new user and set its password
   useradd -m $USERNAME
 
   passwd $USERNAME <<EOT
   $USERPASSWORD
-  EOT
+EOT
 
   usermod -aG wheel,audio,video,optical,storage $USERNAME
 
