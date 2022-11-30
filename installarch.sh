@@ -43,15 +43,15 @@ TIMEZONE=$(readlink -f /etc/localtime)
 # chroot in
 
 arch-chroot /mnt <<EOF
-  # set the timezone
-  ln -sf $TIMEZONE /etc/localtime
-  hwclock --systohc
+# set the timezone
+ln -sf $TIMEZONE /etc/localtime
+hwclock --systohc
 
-  # set the hostname
-  echo $HOSTNAME > /etc/hostname
+# set the hostname
+echo $HOSTNAME > /etc/hostname
 
-  # hostfile
-  echo "
+# hostfile
+echo "
 # IPv4
 127.0.0.1	localhost
 127.0.1.1	<your hostname>.localdomain <your hostname>
@@ -59,35 +59,36 @@ arch-chroot /mnt <<EOF
 # IPv6
 ::1		localhost" > /etc/hosts
 
-  # set root password
-  passwd <<EOT
-  $ROOTPASSWORD
+# set root password
+passwd <<EOT
+$ROOTPASSWORD
 EOT
 
-  # make a new user and set its password
-  useradd -m $USERNAME
+# make a new user and set its password
+useradd -m $USERNAME
 
-  passwd $USERNAME <<EOT
-  $USERPASSWORD
+passwd $USERNAME <<EOT
+$USERPASSWORD
 EOT
 
-  usermod -aG wheel,audio,video,optical,storage $USERNAME
+usermod -aG wheel,audio,video,optical,storage $USERNAME
 
-  # uncomment wheel group in sudoers
-  sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
+# uncomment wheel group in sudoers
+sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
 
-  pacman -S grub efibootmgr os-prober freetype2 dosfstools --noconfirm
-  grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
-  grub-mkconfig -o /boot/grub/grub.cfg
+pacman -S grub efibootmgr os-prober freetype2 dosfstools --noconfirm
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
 
-  # install network tools
-  pacman -S dhcpcd net-tools netctl dialog wpa_supplicant networkmanager nm-connection-editor inetutils ifplugd --noconfirm
-
-  exit
-EOF
+# install network tools
+pacman -S dhcpcd net-tools netctl dialog wpa_supplicant networkmanager nm-connection-editor inetutils ifplugd --noconfirm
 
 # enable services
 systemctl enable {dhcpcd,NetworkManager,ifplugd}
+
+exit
+EOF
+
 
 # unmount partitions
 umount -R /mnt
