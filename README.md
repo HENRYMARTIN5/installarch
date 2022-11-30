@@ -6,6 +6,8 @@ Short warning: This is optimized for my various installations of Arch in VMs. It
 
 Pro tip: If you know what you're doing, you can just look at the headings of each of the steps and follow the process much more loosely.
 
+Wanna know what this script is doing? Check out the bottom of this README, it contains a list of everything installed and 
+
 ### Step 1: Get a USB Drive and load Arch
 Obtain a USB drive. You probably have one lying around. If a USB drive won't do, you can use a MicroSD/SD card, DVD, or other removable media. Download a copy of [Rufus](https://rufus.ie/en/#) and burn the [Arch Linux ISO](https://archlinux.org/download/) to it.
 
@@ -120,3 +122,33 @@ Yay! You just installed Arch Linux! Revel in your glory for now you may utter th
 |__|   |____//____  >\___  >   (____  /__|    \___  >___|  / /\    |___  /__|   \/\_/  
                   \/     \/         \/            \/     \/  )/        \/              
 ```
+
+## Features of this script
+
+#### `installarch.sh`
+
+ - Partitions given disk with one ext4 partition and an efi system partition on a gpt table
+ - Installs base packages with `pacstrap` (`base`, `base-devel`, `linux`, `linux-firmware`, `linux-headers`, `man-db`, `man-pages`, `bash-completion`)
+ - Generates `fstab`
+ - Automatically chroots into the new install using `arch-chroot`
+ - Sets the timezone to the original host timezone
+ - Sets the system hostname
+ - Creates a hostfile
+ - Sets the root password
+ - Creates a user and sets its password, also adds it to `sudoers`
+ - Installs grub to the disk
+ - Installs networking tools
+ 
+#### `postinstall.sh`
+
+ - Installs the specified desktop environment and the required drivers for the system GPU, as well as a display manager compatible with that desktop environment
+ - Installs various audio drivers
+ - Enables `command-not-found` and `autocd`
+ - Installs the shell of the user's choice (`bash`, `zsh`, or `fish`)
+ - If zsh is installed, also installs `oh-my-zsh`, `zsh-autocompletion`, and `zsh-syntax-hilighting`
+ - Sets default shell to chosen shell
+ - Installs firefox, vlc, libreoffice-fresh, gimp, inkscape, gparted, p7zip, unrar, unzip, and zip
+ - Installs `yay`, an AUR helper
+ - Enables `NetworkManager`
+ - Automatically launches the display manager
+ - 
