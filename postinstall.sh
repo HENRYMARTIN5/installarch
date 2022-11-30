@@ -110,9 +110,7 @@ echo "Enabled command-not-found and autocd."
 
 # Install the respective shell
 if [ "$SHELL" = "bash" ]; then
-    echo "Installing Bash..."
-    pacman -S bash --noconfirm
-    echo "Done!"
+    echo "Bash is already installed, skipping additional shell tweaks."
 elif [ "$SHELL" = "fish" ]; then
     echo "Installing Fish..."
     pacman -S fish --noconfirm
