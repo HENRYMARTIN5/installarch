@@ -246,7 +246,7 @@ echo "Done!"
 
 # Enable NetworkManager
 echo "Enabling NetworkManager..."
-systemctl enable NetworkManager
+systemctl enable {dhcpcd,NetworkManager,ifplugd}
 
 clear
 echo "       Successfully tweaked system config and installed desktop environment."
