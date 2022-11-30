@@ -56,7 +56,7 @@ Now, run the script:
 ./installarch.sh [DRIVE] [HOSTNAME] [USERNAME] [ROOTPASSWORD] [PASSWORD]
 ```
 
-### Step 5: Reboot into your shiny new Arch Linux install (but we're not done yet)!
+### Step 5: Reboot into your shiny new Arch Linux install and connect to the internet again, if necessary (but we're not done yet)!
 
 First, we need to reboot the system. Run the command:
 
@@ -65,6 +65,8 @@ reboot
 ```
 
 You should have been dropped into a login screen. Log in with the user username and password you chose earlier.
+
+Now, run `ping google.com`. If this works, move on to the next step. If not, follow the instructions in the first bit of Step 3 to connect to the internet again.
 
 ### Step 6: Clone this repo again and run the post-install script
 
