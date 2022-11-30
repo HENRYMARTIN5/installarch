@@ -108,6 +108,39 @@ echo "shopt -s autocd" >> /etc/bash.bashrc
 
 echo "Enabled command-not-found and autocd."
 
+echo "Installing OpenSSH..."
+pacman -S openssh --noconfirm > /dev/null
+echo "Done!"
+
+# Enable the pacman easter egg and color option
+echo "Enabling pacman easter egg and color option..."
+sed -i 's/#Color/Color/g' /etc/pacman.conf
+
+# Enable the pacman easter egg by appending ILoveCandy to the end of the file
+echo "ILoveCandy" >> /etc/pacman.conf
+echo "Done!"
+
+# Enable multilib
+echo "Enabling multilib..."
+sed -i 's/#\[multilib\]/\[multilib\]/g' /etc/pacman.conf
+sed -i 's/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g' /etc/pacman.conf
+echo "Done!"
+
+# Install neofetch
+echo "Installing neofetch..."
+pacman -S neofetch --noconfirm > /dev/null
+echo "Done!"
+
+# Install various fonts
+echo "Installing missing fonts..."
+pacman -S noto-fonts noto-fonts-cjk ttf-dejavu ttf-liberation ttf-opensans
+echo "Done!"
+
+# Install inetutils
+echo "Installing inetutils..."
+pacman -S inetutils --noconfirm > /dev/null
+echo "Done!"
+
 # Install the respective shell
 if [ "$SHELL" = "bash" ]; then
     echo "Bash is already installed, skipping additional shell tweaks."
@@ -155,16 +188,60 @@ elif [ "$SHELL" = "zsh" ]; then
 fi
 
 # Install some other stuff
-echo "Installing other utils..."
+echo "Installing other productivity utilities..."
 pacman -S firefox vlc libreoffice-fresh gimp inkscape gparted p7zip unrar unzip zip --noconfirm
 echo "Done!"
 
-echo "Installing yay..."
+echo "Installing yay... (you may have to confirm the installation, just press Y and then enter if prompted)"
 su $SUDO_USER -c "git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm" || {
     echo "Could not install yay" >/dev/stderr
 }
 echo "Done!"
 
+# Use yay to install the microsoft core fonts
+echo "Installing Microsoft core fonts using yay... (This may take a while)"
+yay -S ttf-ms-fonts --answerdiff=None
+echo "Done!"
+
+echo "Installing Hyfetch..."
+yay -S hyfetch --answerdiff=None
+echo "Done!"
+
+# Install winetricks
+echo "Installing winetricks..."
+pacman -S winetricks --noconfirm > /dev/null
+echo "Done!"
+
+# Install lutris
+echo "Installing Lutris..."
+pacman -S lutris --noconfirm > /dev/null
+echo "Done!"
+
+# Install steam
+echo "Installing Steam..."
+pacman -S steam --noconfirm > /dev/null
+echo "Done!"
+
+# Install Amarok
+echo "Installing Amarok..."
+pacman -S amarok --noconfirm > /dev/null
+echo "Done!"
+
+echo "Installing some other stuff..."
+pacman -S thunderbird neovim python kitty --noconfirm > /dev/null
+echo "Done!"
+
+echo "Installing TOR..."
+pacman -S tor --noconfirm > /dev/null
+echo "Done!"
+
+echo "Installing Discord..."
+pacman -S discord --noconfirm > /dev/null
+echo "Done!"
+
+echo "Installing Spotify..."
+pacman -S spotify-launcher --noconfirm > /dev/null
+echo "Done!"
 
 
 # Enable NetworkManager
@@ -202,4 +279,4 @@ elif [ "$DESKTOP" = "lxde" ] then
     systemctl enable lxdm
 fi
 
-echo "installarch.sh has finished running. if you see this, you have exited your graphical session."
+echo "installarch has finished running. if you see this, you have exited your graphical session."
