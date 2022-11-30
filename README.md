@@ -37,6 +37,8 @@ Finally, run `ping google.com`. If that works, run `timedatectl set-ntp true` to
 Run:
 
 ```sh
+pacman -Sy
+pacman -S git --noconfirm
 git clone https://github.com/HENRYMARTIN5/installarch.git
 cd installarch
 chmod +x installarch.sh
