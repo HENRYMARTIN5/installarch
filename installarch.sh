@@ -10,37 +10,13 @@ USERPASSWORD = $5
 
 echo "Validating disk $DISK"
 
-# check if the disk is actually a disk
+# check if the disk is a block device
 if [ ! -b $DISK ]; then
   echo "Error: $DISK is not a block device"
   exit 1
 fi
 
 echo "Beginning installation of Arch Linux for $HOSTNAME on $DISK"
-
-# to create the partitions programatically (rather than manually)
-# we're going to simulate the manual input to fdisk
-# The sed script strips off all the comments so that we can 
-# document what we're doing in-line with the actual commands
-# Note that a blank line (commented as "defualt" will send a empty
-# line terminated with a newline to take the fdisk default.
-sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk $DISK
-  g # setup a gpt partition table
-  n # new partition (efi partition)
-  p # primary partition
-    # default - 1st partition
-    # default - starts at beginning of disk
-  +512M  # efi partition sizew
-  t # change the type of a partition
-  ef # set to efi
-  n # new partition (rootfs)
-  p # primary partition
-    # default - 2nd partition
-    # default - starts at beginning of available space
-    # default - fills disk
-  w # write the partition table
-  q # and we're done
-EOF
 
 # now, we need to format the partitions
 
@@ -66,7 +42,7 @@ TIMEZONE=$(readlink -f /etc/localtime)
 
 # chroot in
 
-arch-chroot /mnt <<"EOF"
+arch-chroot /mnt <<EOF
   # set the timezone
   ln -sf $TIMEZONE /etc/localtime
   hwclock --systohc
