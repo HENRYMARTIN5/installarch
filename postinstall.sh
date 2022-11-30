@@ -173,7 +173,26 @@ echo "Done!"
 echo "Enabling NetworkManager..."
 systemctl enable NetworkManager
 
-echo "Enabling Display Manager..."
+clear
+echo "       Successfully tweaked system config and installed desktop environment."
+echo
+echo ".__                                                 .__           ___.    __           "
+echo "|__|    __ __  ______ ____     _____ _______   ____ |  |__        \_ |___/  |___  _  __"
+echo "|  |   |  |  \/  ___// __ \    \__  \\_  __ \_/ ___\|  |  \        | __ \   __\ \/ \/ /"
+echo "|  |   |  |  /\___ \\  ___/     / __ \|  | \/\  \___|   Y  \       | \_\ \  |  \     / "
+echo "|__|   |____//____  >\___  >   (____  /__|    \___  >___|  / /\    |___  /__|   \/\_/  "
+echo "                  \/     \/         \/            \/     \/  )/        \/              "
+echo
+echo "                 installarch was made by @HENRYMARTIN5 on GitHub"
+echo "            if this script helped you, leave me a star on the repo."
+echo
+echo "     a graphical environment will launch once you continue past this screen."
+echo "        you can log in with the username and password you chose earlier."
+echo
+echo "                        press any key to continue"
+
+read -n 1 -s
+
 # Enable the display manager
 if [ "$DESKTOP" = "budgie" ] || [ "$DESKTOP" = "gnome" ] then
     systemctl enable gdm
@@ -185,5 +204,4 @@ elif [ "$DESKTOP" = "lxde" ] then
     systemctl enable lxdm
 fi
 
-echo "Successfully tweaked system config and installed desktop environment."
-echo "I use Arch, btw."
+echo "installarch.sh has finished running. if you see this, you have exited your graphical session."
