@@ -12,14 +12,43 @@ Wanna know what this script is doing? Check out the bottom of this README, it co
 ### Step 1: Get a USB Drive and load Arch
 Obtain a USB drive. You probably have one lying around. If a USB drive won't do, you can use a MicroSD/SD card, DVD, or other removable media. Download a copy of [Rufus](https://rufus.ie/en/#) and burn the [Arch Linux ISO](https://archlinux.org/download/) to it.
 
-### Step 2: Boot into the USB drive and ensure that it booted in UEFI mode
+### Step 2: Boot into the USB drive and ensure that it booted in UEFI mode, then partition the drive
 Reboot your machine. Spam the function keys (F1-F12) and select your removable medium. You should be dropped into a command line. Run the following command:
 
 ```sh
 ls /sys/firmware/efi/efivars
 ```
 
-If this command works without errors, proceed. Otherwise, look in your BIOS for a setting called "Preferred Boot Mode". It is confirmed to be in both the Thinkpad and Dell BIOS.
+If this command works without errors, proceed. Otherwise, reboot and look in your BIOS for a setting called "Preferred Boot Mode". It is confirmed to be in both the Thinkpad and Dell BIOS.
+
+Now, we need to partition the drive you're using. To begin, run `fdisk /dev/sdx`, with `sdx` replaced with the drive you want to format.
+
+At the new prompt, run the following commands. Keep in mind that things in brackets are instructions to be followed by you, the user, not to be typed in:
+
+```
+g
+n
+[Accept default]
+[Accept default]
++512M
+[If prompted, select Yes]
+t
+1
+n
+[Accept default]
+[Accept default]
+[Accept default]
+[If prompted, select Yes]
+w
+```
+
+What this mess of letters does is as follows:
+- Creates a new partition table (GPT)
+- Creates a new partition
+- Makes it 512M
+- Changes the type of that partition to an EFI system partition
+- Creates a new partition with the rest of the available space
+- Writes to the disk
 
 ### Step 3: Connect to the internet and download this repo
 There are many ways you can do this. This guide covers some of the more common ones. If you're in a VM and didn't select "Bridged Adapter" mode, then you're probably already connected to the internet. Run `ping google.com` to test your connection. If you selected "Bridged Adapter" mode, then you're probably good to run `dhcpcd` and connect.
