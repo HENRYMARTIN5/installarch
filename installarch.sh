@@ -1,28 +1,19 @@
 #!/bin/bash
 
-# first thing: get the disk the user wants to install to (first parameter)
+# get parameters
 
 DISK=$1
-
-# get the hostname the user wants to set
-
 HOSTNAME=$2
-
-# get the username the user wants to get
-
 USERNAME=$3
-
 ROOTPASSWORD = $4
-
 USERPASSWORD = $5
 
 echo "Validating disk $DISK"
 
 # check if the disk is actually a disk
-
 if [ ! -b $DISK ]; then
-    echo "Error: $DISK is not a block device"
-    exit 1
+  echo "Error: $DISK is not a block device"
+  exit 1
 fi
 
 echo "Beginning installation of Arch Linux for $HOSTNAME on $DISK"
