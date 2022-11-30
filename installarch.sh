@@ -100,12 +100,12 @@ arch-chroot /mnt <<"EOF"
   # uncomment wheel group in sudoers
   sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
 
-  pacman -S grub efibootmgr os-prober freetype2 dosfstools
+  pacman -S grub efibootmgr os-prober freetype2 dosfstools --noconfirm
   grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
   grub-mkconfig -o /boot/grub/grub.cfg
 
   # install network tools
-  pacman -S dhcpcd net-tools netctl dialog wpa_supplicant networkmanager nm-connection-editor inetutils ifplugd
+  pacman -S dhcpcd net-tools netctl dialog wpa_supplicant networkmanager nm-connection-editor inetutils ifplugd --noconfirm
 
   exit
 EOF
