@@ -1,3 +1,4 @@
+
 # installarch
 script to install arch linux on your pc
 
@@ -18,12 +19,12 @@ Reboot your machine. Spam the function keys (F1-F12) and select your removable m
 ls /sys/firmware/efi/efivars
 ```
 
-If this command works without errors, proceed. Otherwise, look in your BIOS for a setting called "Perfered Boot Mode". It is comfirmed to be in both the Thinkpad and Dell BIOS.
+If this command works without errors, proceed. Otherwise, look in your BIOS for a setting called "Preferred Boot Mode". It is confirmed to be in both the Thinkpad and Dell BIOS.
 
 ### Step 3: Connect to the internet and download this repo
 There are many ways you can do this. This guide covers some of the more common ones. If you're in a VM and didn't select "Bridged Adapter" mode, then you're probably already connected to the internet. Run `ping google.com` to test your connection. If you selected "Bridged Adapter" mode, then you're probably good to run `dhcpcd` and connect.
 
-If you're not in a VM but have an ethernet cable connected, chances are also that you can connect using `dhcpcd`. If that doesn't work, we can resort to a WiFi connection. Run `iwctl`. Now, at the new prompt, type `device list`. It should print a list of network interfaces on your device. 
+If you're not in a VM but have an Ethernet cable connected, chances are also that you can connect using `dhcpcd`. If that doesn't work, we can resort to a WiFi connection. Run `iwctl`. Now, at the new prompt, type `device list`. It should print a list of network interfaces on your device. 
 
 Next, scan for networks. Choose a device from the list, and run `station [DEVICE] scan` with `[DEVICE]` being replaced by the network interface you chose.
 
@@ -55,7 +56,7 @@ Now, run the script:
 ./installarch.sh [DRIVE] [HOSTNAME] [USERNAME] [ROOTPASSWORD] [PASSWORD]
 ```
 
-### Step 5: Reboot into your shiny new Arch Linux install (but we're not dont yet)!
+### Step 5: Reboot into your shiny new Arch Linux install (but we're not done yet)!
 
 First, we need to reboot the system. Run the command:
 
@@ -81,7 +82,7 @@ cd installarch
 chmod +x postinstall.sh
 ```
 
-And finally, run the script, passing it your GPU brand (amd, intel, or nvidia) and the desktop environment. We'll quickly dive into what each of the DEs look like so you can properly choose the one you want.
+And finally, run the script, passing it your GPU brand (AMD, Intel, or Nvidia) and the desktop environment. We'll quickly dive into what each of the DEs look like so you can properly choose the one you want.
 
  - Budgie (`budgie`) ![image](https://user-images.githubusercontent.com/62612165/204823121-d625b61b-d2ed-4fd8-abdd-6b5ea528ed42.png)
  - Cinnamon (`cinnamon`) ![image](https://user-images.githubusercontent.com/62612165/204823321-c6b06a4c-49e9-4e2b-920c-f40fa6ebde81.png)
@@ -94,7 +95,7 @@ And finally, run the script, passing it your GPU brand (amd, intel, or nvidia) a
  - Xfce (`xfce`) ![image](https://user-images.githubusercontent.com/62612165/204825545-37870b45-70bf-4d59-8618-b2348e0acfda.png)
 
 
-I personally reccomend KDE Plasma for experienced Windows users, LXQt for people running on Vms or other less powerful machines, GNOME for people wanting a minimalist, modern desktop with a bit of a different layout, and Xfce for people who want to use Arch for development due to its powerful tiling manager. If you want a somewhat Windows-esque experience with a bit of a switched up feature set, I reccomend looking into Budgie, which mimics GNOME in functionality (it was based on GNOME, actually) but adds features that will require some adjusting to from windows.
+I personally recommend KDE Plasma for experienced Windows users, LXQt for people running on VMs or other less powerful machines, GNOME for people wanting a minimalist, modern desktop with a bit of a different layout, and Xfce for people who want to use Arch for development due to its powerful tiling manager. If you want a somewhat Windows-esque experience with a bit of a switched up feature set, I recommend looking into Budgie, which mimics GNOME in functionality (it was based on GNOME, actually) but adds features that will require some adjusting to from windows.
 
 TL;DR: KDE Plasma for Windows users, LXQt for less powerful machines, GNOME for something modern, Xfce for development, Budgie for Windows-esque with added features.
 
