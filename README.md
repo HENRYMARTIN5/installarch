@@ -148,7 +148,7 @@ Yay! You just installed Arch Linux! Revel in your glory for now you may utter th
  - Installs the shell of the user's choice (`bash`, `zsh`, or `fish`)
  - If zsh is installed, also installs `oh-my-zsh`, `zsh-autocompletion`, and `zsh-syntax-hilighting`
  - Sets default shell to chosen shell
- - Installs firefox, vlc, libreoffice-fresh, gimp, inkscape, gparted, p7zip, unrar, unzip, and zip
+ - Installs `firefox`, `vlc`, `libreoffice-fresh`, `gimp`, `inkscape`, `gparted`, `p7zip`, `unrar`, `unzip`, and `zip`
  - Installs `yay`, an AUR helper
  - Enables `NetworkManager`
  - Automatically launches the display manager
