@@ -5,8 +5,8 @@
 DISK=$1
 HOSTNAME=$2
 USERNAME=$3
-ROOTPASSWORD = $4
-USERPASSWORD = $5
+ROOTPASSWORD=$4
+USERPASSWORD=$5
 
 echo "Validating disk $DISK"
 
@@ -23,10 +23,15 @@ echo "Beginning installation of Arch Linux for $HOSTNAME on $DISK"
 mkfs.fat -F32 ${DISK}1 # efi partition (fat32)
 mkfs.ext4 ${DISK}2 # rootfs partition (ext4)
 
-# mount partitions
+# mount rootfs partition
 
-mount ${DISK}1 /mnt/boot/efi
 mount ${DISK}2 /mnt
+
+# make sure /boot/efi exists
+mkdir -p /boot/efi
+
+# mount efi partition
+mount ${DISK}1 /mnt/boot/efi
 
 # pacstrap
 
@@ -54,12 +59,12 @@ echo $HOSTNAME > /etc/hostname
 echo "
 # IPv4
 127.0.0.1	localhost
-127.0.1.1	<your hostname>.localdomain <your hostname>
+127.0.1.1	$HOSTNAME.local $HOSTNAME
 
 # IPv6
 ::1		localhost" > /etc/hosts
 
-clear && echo "Please enter your root password (it will not be displayed), then press enter."
+clear && echo "Please enter your root password twice (it will not be displayed), then press enter after each time."
 
 # set root password
 passwd
@@ -67,7 +72,7 @@ passwd
 # make a new user and set its password
 useradd -m $USERNAME
 
-clear && echo "Please enter your user password (it will not be displayed), then press enter."
+clear && echo "Please enter your user password twice (it will not be displayed), then press enter after each time."
 
 passwd $USERNAME
 
@@ -76,8 +81,10 @@ usermod -aG wheel,audio,video,optical,storage $USERNAME
 # uncomment wheel group in sudoers
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
 
-pacman -S refind efibootmgr os-prober freetype2 dosfstools --noconfirm > /dev/null
-refind-install
+# Install grub
+pacman -S grub efibootmgr os-prober freetype2 dosfstools --noconfirm > /dev/null
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi
+grub-mkconfig -o /boot/grub/grub.cfg
 
 # install network tools
 pacman -S dhcpcd net-tools netctl dialog wpa_supplicant networkmanager nm-connection-editor inetutils ifplugd --noconfirm
@@ -90,6 +97,7 @@ EOF
 
 
 # unmount partitions
+umount -R /mnt/boot/efi
 umount -R /mnt
 
 echo "Installation complete. You may now reboot."
