@@ -170,7 +170,7 @@ Yay! You just installed Arch Linux! Revel in your glory for now you may utter th
 - Creates a hostfile
 - Sets the root password
 - Creates a user and sets its password, also adds it to `sudoers`
-- Installs grub to the disk
+- Installs rEFInd to the disk
 - Installs networking tools
  
 #### `postinstall.sh`
