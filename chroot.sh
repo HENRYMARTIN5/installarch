@@ -3,6 +3,7 @@
 TIMEZONE=$1
 HOSTNAME=$2
 USERNAME=$3
+DRIVE=$4
 
 # set the timezone
 ln -sf $TIMEZONE /etc/localtime
@@ -15,7 +16,7 @@ echo $HOSTNAME > /etc/hostname
 echo "
 # IPv4
 127.0.0.1	localhost
-127.0.1.1	$HOSTNAME.local $HOSTNAME
+127.0.1.1	$HOSTNAME.localdomain $HOSTNAME
 
 # IPv6
 ::1		localhost" > /etc/hosts
@@ -38,8 +39,8 @@ usermod -aG wheel,audio,video,optical,storage $USERNAME
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
 
 # Install grub
-pacman -S grub efibootmgr os-prober freetype2 dosfstools --noconfirm > /dev/null
-grub-install --target=x86_64-efi --bootloader-id=grub_uefi
+pacman -S grub os-prober freetype2 dosfstools --noconfirm > /dev/null
+grub-install $DRIVE
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # install network tools

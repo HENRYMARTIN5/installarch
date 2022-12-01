@@ -18,18 +18,12 @@ echo "Beginning installation of Arch Linux for $HOSTNAME on $DISK"
 
 # now, we need to format the partitions
 
-mkfs.fat -F32 ${DISK}1 # efi partition (fat32)
-mkfs.ext4 ${DISK}2 # rootfs partition (ext4)
+mkfs.ext4 ${DISK}1 # rootfs partition (ext4)
 
 # mount rootfs partition
 
-mount ${DISK}2 /mnt
+mount ${DISK}1 /mnt
 
-# make sure /boot/efi exists
-mkdir -p /boot/efi
-
-# mount efi partition
-mount ${DISK}1 /mnt/boot/efi
 
 # pacstrap
 
@@ -51,7 +45,7 @@ copy ./chroot.sh /mnt/root/installarch_chroot.sh
 arch-chroot /mnt <<EOF
 chmod +x /root/installarch_chroot.sh
 cd /root
-./installarch_chroot.sh $TIMEZONE $HOSTNAME $USERNAME
+./installarch_chroot.sh $TIMEZONE $HOSTNAME $USERNAME $DISK
 EOF
 
 
