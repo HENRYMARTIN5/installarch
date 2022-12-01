@@ -84,8 +84,10 @@ Before we actually install it, there are a few things you need to know:
 Now, run the script:
 
 ```sh
-./installarch.sh [DRIVE] [HOSTNAME] [USERNAME] [ROOTPASSWORD] [PASSWORD]
+./installarch.sh [DRIVE] [HOSTNAME] [USERNAME]
 ```
+
+You will eventually be asked to enter a root password, then a user password.
 
 ### Step 5: Reboot into your shiny new Arch Linux install and connect to the internet again, if necessary (but we're not done yet)!
 
@@ -170,7 +172,7 @@ Yay! You just installed Arch Linux! Revel in your glory for now you may utter th
 - Creates a hostfile
 - Sets the root password
 - Creates a user and sets its password, also adds it to `sudoers`
-- Installs rEFInd to the disk
+- Installs Grub2 to the disk
 - Installs networking tools
  
 #### `postinstall.sh`
