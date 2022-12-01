@@ -48,5 +48,3 @@ pacman -S dhcpcd net-tools netctl dialog wpa_supplicant networkmanager nm-connec
 
 # enable services
 systemctl enable {dhcpcd,NetworkManager,ifplugd}
-
-exit

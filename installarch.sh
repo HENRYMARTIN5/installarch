@@ -46,6 +46,7 @@ arch-chroot /mnt <<EOF
 chmod +x /root/installarch_chroot.sh
 cd /root
 ./installarch_chroot.sh $TIMEZONE $HOSTNAME $USERNAME $DISK
+exit
 EOF
 
 
