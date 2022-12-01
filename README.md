@@ -7,7 +7,7 @@ Short warning: This is optimized for my various installations of Arch in VMs. It
 
 Pro tip: If you know what you're doing, you can just look at the headings of each of the steps and follow the process much more loosely.
 
-Wanna know what this script is doing? Check out the bottom of this README, it contains a list of everything installed and modified from the base configuration.
+Wanna know what this script is doing? Check out [the bottom of this README](https://github.com/HENRYMARTIN5/installarch#features-of-this-script), it contains a list of everything installed and modified from the base configuration.
 
 ### Step 1: Get a USB Drive and load Arch
 Obtain a USB drive. You probably have one lying around. If a USB drive won't do, you can use a MicroSD/SD card, DVD, or other removable media. Download a copy of [Rufus](https://rufus.ie/en/#) and burn the [Arch Linux ISO](https://archlinux.org/download/) to it.
