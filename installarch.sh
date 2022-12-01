@@ -59,26 +59,25 @@ echo "
 # IPv6
 ::1		localhost" > /etc/hosts
 
+clear && echo "Please enter your root password (it will not be displayed), then press enter."
+
 # set root password
-passwd <<EOT
-$ROOTPASSWORD
-EOT
+passwd
 
 # make a new user and set its password
 useradd -m $USERNAME
 
-passwd $USERNAME <<EOT
-$USERPASSWORD
-EOT
+clear && echo "Please enter your user password (it will not be displayed), then press enter."
+
+passwd $USERNAME
 
 usermod -aG wheel,audio,video,optical,storage $USERNAME
 
 # uncomment wheel group in sudoers
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
 
-pacman -S grub efibootmgr os-prober freetype2 dosfstools --noconfirm
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
-grub-mkconfig -o /boot/grub/grub.cfg
+pacman -S refind efibootmgr os-prober freetype2 dosfstools --noconfirm > /dev/null
+refind-install
 
 # install network tools
 pacman -S dhcpcd net-tools netctl dialog wpa_supplicant networkmanager nm-connection-editor inetutils ifplugd --noconfirm
