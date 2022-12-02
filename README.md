@@ -141,7 +141,6 @@ Yay! You just installed Arch Linux! Revel in your glory for now you may utter th
 
 #### `installarch.sh`
 
-- Partitions given disk with one ext4 partition and an efi system partition on a gpt table
 - Installs base packages with `pacstrap` (`base`, `base-devel`, `linux`, `linux-firmware`, `linux-headers`, `man-db`, `man-pages`, `bash-completion`)
 - Generates `fstab`
 - Automatically chroots into the new install using `arch-chroot`
