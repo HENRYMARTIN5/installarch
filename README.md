@@ -5,6 +5,8 @@ script to install arch linux on your pc with a bunch of extra goodies
 ### Disclaimer
 Short warning: This is optimized for my various installations of Arch in VMs. It works 9/10 times on normal PCs, but just to be safe, read through everything. Got it? Good. Let's get started.
 
+Oh, also keep in mind that if you want a minimal arch installation, this is not for you. This does a lot of the hard work automatically and installs enough packages to justify itself as its own spin of Arch (not as sophisticated as some other spins, but still a spin nevertheless).
+
 Pro tip: If you know what you're doing, you can just look at the headings of each of the steps and follow the process much more loosely.
 
 Wanna know what this script is doing? Check out [the bottom of this README](https://github.com/HENRYMARTIN5/installarch#features-of-this-script), it contains a list of everything installed and modified from the base configuration.
