@@ -28,7 +28,7 @@ w
 
 If this warns you about "This device contains 'gpt' signature and it will be removed by a write command" ignore it. It should still work fine.
 
-This will create a new partition table. Now, run `cfdisk /dev/sdx`, and select `dos`.
+This will create a new partition table. Now, run `cfdisk /dev/sdx`, and, if prompted, select `dos`.
 
 Use your arrow keys and select `New`, accept the default partition size (the entire disk), and select `primary`. Select `Write` type `yes` and press enter. Then, select `Quit`.
 
