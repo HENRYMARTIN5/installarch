@@ -21,17 +21,8 @@ echo "
 # IPv6
 ::1		localhost" > /etc/hosts
 
-clear && echo "Please enter your root password twice (it will not be displayed), then press enter after each time."
-
-# set root password
-passwd
-
 # make a new user and set its password
 useradd -m $USERNAME
-
-clear && echo "Please enter your user password twice (it will not be displayed), then press enter after each time."
-
-passwd $USERNAME
 
 usermod -aG wheel,audio,video,optical,storage $USERNAME
 
