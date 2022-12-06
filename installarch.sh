@@ -38,7 +38,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 TIMEZONE=$(readlink -f /etc/localtime)
 
 # copy the chroot script to the new system
-copy ./chroot.sh /mnt/root/installarch_chroot.sh
+cp ./chroot.sh /mnt/root/installarch_chroot.sh
 
 # chroot in and run chroot.sh
 
@@ -51,7 +51,6 @@ EOF
 
 
 # unmount partitions
-umount -R /mnt/boot/efi
 umount -R /mnt
 
 echo "Installation complete. You may now reboot."
