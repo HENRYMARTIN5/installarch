@@ -69,7 +69,20 @@ Now, run the script:
 ./installarch.sh [DRIVE] [HOSTNAME] [USERNAME]
 ```
 
-You will eventually be asked to enter a root password, then a user password.
+Now, we need to add a user and root password:
+
+```sh
+arch-chroot /mnt
+passwd
+```
+
+At the prompt, repeat your root password twice. Now run:
+
+```sh
+passwd [USERNAME]
+```
+
+Type your password twice again, this time with your user password. Run `exit` to exit the chroot, then move on to the next step.
 
 ### Step 5: Reboot into your shiny new Arch Linux install and connect to the internet again, if necessary (but we're not done yet)!
 
