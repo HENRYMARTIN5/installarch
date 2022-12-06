@@ -50,7 +50,4 @@ exit
 EOF
 
 
-# unmount partitions
-umount -R /mnt
-
-echo "Installation complete. You may now reboot."
+echo "Installation complete. Set a root password, unmount the partitions, and reboot."
