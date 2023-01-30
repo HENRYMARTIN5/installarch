@@ -41,4 +41,4 @@ pacman -S dhcpcd net-tools netctl dialog wpa_supplicant networkmanager nm-connec
 systemctl enable {dhcpcd,NetworkManager,ifplugd}
 
 # install git and other utilities
-pacman -S curl wget git
+pacman -S curl wget git sudo
